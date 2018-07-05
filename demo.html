@@ -14,8 +14,30 @@
 	</select>
 
 	<div visibly=".test:0,2" id="demo">
-	  SELECTION MATCHED THE ABOVE RULE!
-	</div>
+	  1. SELECTION MATCHED THE ABOVE RULE!
+    </div>
+    
+
+    <!-- Multiple source -->
+    <select class="field1">
+        <option value="a">a</option>
+        <option value="b">b</option>
+        <option value="c">c</option>
+        <option value="d">d</option>
+      </select>
+
+      <select id="field2">
+        <option value="-1">-1</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+
+        <!-- Show   -->
+    <div visibly=".field1:c,d;#field2:1">
+        2. SELECTION MATCHED THE ABOVE RULE
+    </div> 
+
 
 	<script type="text/javascript">
 		$(document).ready(function(event){

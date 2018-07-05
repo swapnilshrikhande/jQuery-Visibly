@@ -20,6 +20,8 @@ vdelim: ',', //Delimeter used to split the values a control can hold
 edelim: ':', //Delimeter between the field ID and the values
 fdelim: ';' //Delimeter between the fields
 rdelim: '%' //Delimeter between the rules
+cssSelector: false //use css selector to select value source instead of input name or id selector eg ".className:value"
+
 ```
 
 ## Examples
@@ -27,6 +29,7 @@ rdelim: '%' //Delimeter between the rules
 ``` 
 <div visibly="field1:a,b;field2:1"></div> 
 ```
+
 
 The above rule will make the relevant element visible is the value of field1 is either 'a' or 'b' and field2 has value of '1'
 
