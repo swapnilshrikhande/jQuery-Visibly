@@ -67,9 +67,16 @@
 									var val = '';
 									if (elem.is('select')) {
 										elem.find('option:selected').each(function() {
-											if ($(this).parent().is("select")) val = $(this).rVal();
+											if ($(this).parent().is("select")) {
+												val = $(this).rVal();
+											}
 										});
-									} else val = elem.val();
+									} else if( elem.is('input[type="checkbox"]') ){
+										val = ""+elem.is(':checked');
+									}  else {
+										val = elem.val();
+									}
+
 									//If the rule doesn't match, hide control
 									if (v.split(s.edelim)[1] != null)
 									//work around for .val not working correctly 
