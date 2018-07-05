@@ -35,17 +35,20 @@
 			nedelim: '!', //Not Equal delimiter between the field ID and the values
 			regularExpression: false, //Use Regular expression for the test
 			fdelim: ';', //Delimiter between the fields
-			rdelim: '%' //Delimiter between rules
+			rdelim: '%', //Delimiter between rules
+			cssSelector: false //use css selector to select value source instead of input name or id selector
 		}, o);
 		var runitems = [];
+		var prefix = s.cssSelector ? '' : '#';
 
 		return this.each(function() {
 			var c = $(this);
 			var split = RegExp(s.edelim + "|" + s.nedelim);
+			
 			//loop through all controls related to the field to create events
 			$.each($(this).attr(s.attr).split(s.fdelim), function(k, v2) {
 				//Bind keyup and change events, keyup is used because if the next tab item is made visible it would not be tabbed to using change or blur
-				var vis = $('#' + v2.split(split)[0]);
+				var vis = $(prefix + v2.split(split)[0]);
 
 				if (vis.length == 0) vis = $('INPUT[name="' + v2.split(split)[0] + '"]');
 				vis.bind("keyup change click", function() {
@@ -56,7 +59,7 @@
 							//loop through the controls related to the rules
 							$.each(rv.split(s.fdelim), function(k, v) {
 								//Cache the element
-								var elem = $('#' + v.split(split)[0]);
+								var elem = $(prefix + v.split(split)[0]);
 								if (elem.length == 0) elem = $("INPUT[name='" + v.split(split)[0] + "']:checked");
 								//Does the element exist?
 								if (elem.val() != undefined) {
@@ -118,7 +121,7 @@
 			//First load, set visibility on all fields based on rules
 			for (var i = 0; i < runitems.length; i++) {
 				$('INPUT[name="' + runitems[i] + '"]').trigger('change');
-				$('#' + runitems[i]).trigger('change');
+				$(prefix + runitems[i]).trigger('change');
 			}
 		});
 	};

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="./js/jquery-visibly.js"></script>
+</head>
+<body>
+	<select class="test">
+	  <option value="-1">-1</option>
+	  <option value="0">0</option>
+	  <option value="1">1</option>
+	  <option value="2">2</option>
+	</select>
+
+	<div visibly=".test:0,2" id="demo">
+	  SELECTION MATCHED THE ABOVE RULE!
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(event){
+			$("[visibly]").Visibly(options = {
+				//Clear the data from the elements on hide
+				clearOnHide: false,  
+
+				//This determines if regular expression is to be used for the test
+				regularExpression: false, 
+
+				//Data attribute to use for the visibly data
+				attr: 'visibly', 
+
+				//Delimiter used to split the values a control can hold
+				vdelim: ',', 
+
+				//Delimiter between the field ID and the values
+				edelim: ':', 
+
+				//Delimiter between the fields
+				fdelim: ';',
+
+				//Delimiter between the rules
+				rdelim: '%',
+				cssSelector: true 
+			});
+
+		});		
+	</script>
+</body>
+</html>
