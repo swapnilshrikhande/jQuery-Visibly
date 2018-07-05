@@ -110,7 +110,7 @@
 						//Clear the element and child elements if ClearOnHide is set
 						if ((!visible) && (s.clearOnHide)) {
 							c.val('');
-							c.find('input,textarea,select').val('');
+							c.find('input,textarea,select').val('').trigger("change");
 							c.selectedIndex = 0;
 						}
 					})
