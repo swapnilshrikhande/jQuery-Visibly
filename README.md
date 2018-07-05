@@ -34,7 +34,7 @@ The above rule will make the relevant element visible is the value of field1 is 
 
 ## Examples
 
-# Using cssSelector : true option
+### Using cssSelector : true option
 ``` 
 <select class="source">
 	  <option value="-1">-1</option>
