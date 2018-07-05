@@ -29,9 +29,23 @@ cssSelector: false //use css selector to select value source instead of input na
 ``` 
 <div visibly="field1:a,b;field2:1"></div> 
 ```
-
-
 The above rule will make the relevant element visible is the value of field1 is either 'a' or 'b' and field2 has value of '1'
+
+
+## Examples
+
+# Using cssSelector : true option
+``` 
+<select class="source">
+	  <option value="-1">-1</option>
+	  <option value="0">0</option>
+	  <option value="1">1</option>
+	  <option value="2">2</option>
+</select>
+<div visibly=".source:0,1;"></div>
+```
+The above rule will make the relevant element visible is the value of .source is either '0' or '1'
+
 
 ## Help
 Full documentation can be found at: http://www.danielrivers.com/visibly
