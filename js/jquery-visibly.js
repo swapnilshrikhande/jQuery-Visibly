@@ -36,7 +36,9 @@
 			regularExpression: false, //Use Regular expression for the test
 			fdelim: ';', //Delimiter between the fields
 			rdelim: '%', //Delimiter between rules
-			cssSelector: false //use css selector to select value source instead of input name or id selector
+			cssSelector: false, //use css selector to select value source instead of input name or id selector
+			onHideEvent: '', // if set then trigger event on hide specified by the name 
+			onShowEvent: ''	 // if set then trigger event on show specified by the name 
 		}, o);
 		var runitems = [];
 		var prefix = s.cssSelector ? '' : '#';
@@ -98,13 +100,23 @@
 							});
 							return !visible;
 						});
+
 						//Set visibilty
 						//setting individual items on drop down doesn't work cross browser, check to see if option and wrap in hidden span
-						if (visible) {
+						
+						var isVisibleOnScreen = c.is(':visible');
+
+						if (!isVisibleOnScreen && visible ) {
 							if (c.is("option")) {
 								if (c.parent('span.hide').length) c.unwrap();
 							} else c.show()
-						} else {
+
+							if(s.onShowEvent){
+								c.trigger(s.onShowEvent);
+							}
+
+						} else if(isVisibleOnScreen && !visible ) {
+
 							if (c.is("option")) {
 								if (c.parent('span.hide').length == 0) {
 									if (c.val() == c.closest('select').val())
@@ -113,7 +125,14 @@
 									c.wrap('<span class="hide" style="display: none;" />');
 								};
 							} else c.hide()
-						};
+
+							if(s.onHideEvent){
+								c.trigger(s.onHideEvent);
+							}
+						} else {
+							//nothing to do
+						}
+
 						//Clear the element and child elements if ClearOnHide is set
 						if ((!visible) && (s.clearOnHide)) {
 							c.val('');

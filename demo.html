@@ -38,10 +38,52 @@
         2. SELECTION MATCHED THE ABOVE RULE
     </div> 
 
+    <table>
+    	<tr>
+    		<td>
+    			<input type="text" visibly=".test:0"/>
+    		</td>
+    	</tr>
+    </table>
 
 	<script type="text/javascript">
 		$(document).ready(function(event){
-			$("[visibly]").Visibly(options = {
+
+			var nestedInTable = $("table [visibly]");
+
+			nestedInTable.Visibly({
+				//Clear the data from the elements on hide
+				clearOnHide: false,  
+
+				//This determines if regular expression is to be used for the test
+				regularExpression: false, 
+
+				//Data attribute to use for the visibly data
+				attr: 'visibly', 
+
+				//Delimiter used to split the values a control can hold
+				vdelim: ',', 
+
+				//Delimiter between the field ID and the values
+				edelim: ':', 
+
+				//Delimiter between the fields
+				fdelim: ';',
+
+				//Delimiter between the rules
+				rdelim: '%',
+				cssSelector: true,
+				onHideEvent: 'el-hidden', 
+				onShowEvent: 'el-shown'   
+			});
+
+			nestedInTable.on("el-shown",function(event){
+				console.log('shown:',this);
+			}).on("el-hidden",function(event){
+				console.log('hidden:',this);
+			});
+
+			$("[visibly]").not(nestedInTable).Visibly(options = {
 				//Clear the data from the elements on hide
 				clearOnHide: false,  
 
