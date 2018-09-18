@@ -1,4 +1,4 @@
-jQuery-Visibly
+jQuery-render-if
 ==============
 
 A jQuery Plugin designed to easily show elements based on values of other elements
