@@ -1,4 +1,4 @@
-#Library Initialization
+Library Initialization
 1. All elements which have render-if loop over them one by one
 2. Get the attribute and evaluate each expression (this will populate the the selector array)
 3. Loop over the selector array and attach "change click" handler to the selectors in the array
